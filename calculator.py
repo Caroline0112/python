@@ -3,7 +3,7 @@ import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy 
 
-#Zaczynamy od dwóch funkcji; pierwsza dodaje wzór funkcji, druga czyści okienka, użyjemy ich przy guzikach 
+# Zaczynamy od dwóch funkcji; pierwsza dodaje wzór funkcji, druga czyści okienka, użyjemy ich przy guzikach 
 def add_func(text):
     equation = str(equation_tk.get())
     equation = equation + str(text)
@@ -17,7 +17,7 @@ def clearing():
     y_min.set("0")
     y_max.set("1")
     plot_name.set("")
-#tworzymy okno, określamy składowe okienka, warunki domyślne i wstępny wygląd
+# tworzymy okno, określamy składowe okienka, warunki domyślne i wstępny wygląd
 root = tk.Tk()
 root.geometry("1200x600")
 root.configure(bg='green')
@@ -68,7 +68,7 @@ y_name_label = tk.Label(root, text= "y name: ", width=15).grid(column=0,row=13)
 plot_name_label = tk.Label(root, text= "plot name: ", width=15).grid(column=0,row=14)
 
 
-#zapisujemy słownik, a w drugiej linijce, biorąc klucze, dostajemy się do oczekiwanych funkcji numpy'a i operacji arytmetycznych
+# zapisujemy słownik, a w drugiej linijce, biorąc klucze, dostajemy się do oczekiwanych funkcji numpy'a i operacji arytmetycznych
 math_func = {"Sin": "numpy.sin", "Cos": "numpy.cos", "Ln": "numpy.log", "Exp":"numpy.exp", "+":"+", "-":"-", "*":"*","/":"/"}
 math_func_keys = list(math_func.keys())
 
@@ -116,11 +116,11 @@ def plot_button():
 
 plot_button()
 
-#nadanie funkcjonalności głównym przyciskom i legendzie (check)
+# nadanie funkcjonalności głównym przyciskom i legendzie (check)
 plotting_button = tk.Button(root, text = "DRAW", command=plot_button, width=15).grid(column=0, row=3)
 clearing_button = tk.Button(root, text = "CLEAR", width=15, command=clearing).grid(column=1, row=3)
 legend_button = tk.Checkbutton(root, text="Legend", variable=legend, onvalue=True, offvalue=False, width=15).grid(column=4, row=14)
-#przyciski-nadajemy im opisy i funkcje
+# przyciski-nadajemy im opisy i funkcje
 button1 = tk.Button(root, text="sin", width=15, command=lambda: [add_func("Sin()")]).grid(column=0, row=4)
 button2 = tk.Button(root, text="cos", width=15, command=lambda: [add_func("Cos()")]).grid(column=1, row=4)
 button5 = tk.Button(root, text="ln", width=15, command=lambda: [add_func("Ln()")]).grid(column=0, row=5)
