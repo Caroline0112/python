@@ -3,7 +3,7 @@ import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy 
 
-"""Zaczynamy od dwóch funkcji; pierwsza dodaje wzór funkcji, druga czyści okienka, użyjemy ich przy guzikach """
+#Zaczynamy od dwóch funkcji; pierwsza dodaje wzór funkcji, druga czyści okienka, użyjemy ich przy guzikach 
 def add_func(text):
     equation = str(equation_tk.get())
     equation = equation + str(text)
@@ -17,11 +17,10 @@ def clearing():
     y_min.set("0")
     y_max.set("1")
     plot_name.set("")
-"""tworzymy okno, określamy składowe okienka, warunki domyślne i wstępny wygląd"""
+#tworzymy okno, określamy składowe okienka, warunki domyślne i wstępny wygląd
 root = tk.Tk()
 root.geometry("1200x600")
 root.configure(bg='green')
-"""estetyka"""
 root.columnconfigure(0, weight=10)
 root.columnconfigure(1, weight=10)
 root.columnconfigure(2, weight=1)
@@ -44,7 +43,6 @@ x_min.set("0")
 x_max.set("1")
 y_min.set("0")
 y_max.set("1")
-"""okienka + ich opisy"""
 x_min_ = tk.Entry(root, textvariable=x_min, width=15)
 x_max_ = tk.Entry(root, textvariable=x_max, width=15)
 y_min_ = tk.Entry(root, textvariable=y_min, width=15)
@@ -70,24 +68,23 @@ y_name_label = tk.Label(root, text= "y name: ", width=15).grid(column=0,row=13)
 plot_name_label = tk.Label(root, text= "plot name: ", width=15).grid(column=0,row=14)
 
 
-"""zapisujemy słownik, a w drugiej linijce, biorąc klucze, dostajemy się do oczekiwanych funkcji numpy'a i operacji arytmetycznych"""
+#zapisujemy słownik, a w drugiej linijce, biorąc klucze, dostajemy się do oczekiwanych funkcji numpy'a i operacji arytmetycznych
 math_func = {"Sin": "numpy.sin", "Cos": "numpy.cos", "Ln": "numpy.log", "Exp":"numpy.exp", "+":"+", "-":"-", "*":"*","/":"/"}
 math_func_keys = list(math_func.keys())
 
 def plot_button():
-    """płótno"""
     Plot_matplot = plt.figure(figsize=(6,6))
     Plot_tkinter = tk.Frame(root, width=350)
     Plot_tkinter.grid(column=3, row=2, rowspan=13)
 
-    """Zakresy osi"""
+
     xmin = int(x_min.get())
     xmax = int(x_max.get())
     ymin = int(y_min.get())
     ymax = int(y_max.get())
     
     
-    """równania"""
+
     equation = str(equation_tk.get())
     equation1 = str(equation_tk.get())
     if equation == "": 
@@ -95,7 +92,7 @@ def plot_button():
         equation1 = "0"
     for key, value in math_func.items(): 
         equation = equation.replace(key, value) 
-    """oddzielanie"""
+
     functions = equation.split(';') 
     functions1 = equation1.split(';')
 
@@ -119,11 +116,11 @@ def plot_button():
 
 plot_button()
 
-"""nadanie funkcjonalności głównym przyciskom i legendzie (check)"""
+#nadanie funkcjonalności głównym przyciskom i legendzie (check)
 plotting_button = tk.Button(root, text = "DRAW", command=plot_button, width=15).grid(column=0, row=3)
 clearing_button = tk.Button(root, text = "CLEAR", width=15, command=clearing).grid(column=1, row=3)
 legend_button = tk.Checkbutton(root, text="Legend", variable=legend, onvalue=True, offvalue=False, width=15).grid(column=4, row=14)
-"""przyciski-nadajemy im opisy i funkcje"""
+#przyciski-nadajemy im opisy i funkcje
 button1 = tk.Button(root, text="sin", width=15, command=lambda: [add_func("Sin()")]).grid(column=0, row=4)
 button2 = tk.Button(root, text="cos", width=15, command=lambda: [add_func("Cos()")]).grid(column=1, row=4)
 button5 = tk.Button(root, text="ln", width=15, command=lambda: [add_func("Ln()")]).grid(column=0, row=5)
